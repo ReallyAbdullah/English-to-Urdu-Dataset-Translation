@@ -51,13 +51,13 @@ def FileProcessing(fname):
         c_sen = re.sub(r'[^A-Za-z0-9@]+', ' ', y)
         cleaned_abst.append(c_sen)
         print('Translating : ',c_sen)
-        # t_txt = translator.translate(c_sen, dest='ur')
-        # print('Translated to : ',t_txt.text)
-        # ur_abst.append(t_txt.text)
-        # time.sleep(25)
+        t_txt = translator.translate(c_sen, dest='ur')
+        print('Translated to : ',t_txt.text)
+        ur_abst.append(t_txt.text)
+        time.sleep(25)
 
     a_eng = ". ".join(cleaned_abst)
-    # a_urd = ". ".join(ur_abst)
+    a_urd = ". ".join(ur_abst)
 
     # Text Translation
     list_sentences = text.split('.')
@@ -67,16 +67,16 @@ def FileProcessing(fname):
         c_sen = re.sub(r'[^A-Za-z0-9@]+', ' ', y)
         cleaned_sentences.append(c_sen)
         print('Translating : ',c_sen)
-        # t_txt = translator.translate(c_sen, dest='ur')
-        # print('Translated to : ',t_txt.text)
-        # ur_sentences.append(t_txt.text)
-        # time.sleep(25)
+        t_txt = translator.translate(c_sen, dest='ur')
+        print('Translated to : ',t_txt.text)
+        ur_sentences.append(t_txt.text)
+        time.sleep(25)
 
     t_eng = ". ".join(cleaned_sentences)
-    # t_urd = ". ".join(ur_sentences)
+    t_urd = ". ".join(ur_sentences)
 
     # Saving into csv file
-    data = [[a_eng,a_eng,t_eng,t_eng]]
+    data = [[a_eng,a_urd,t_eng,t_urd]]
     df = pd.DataFrame(data,
                    columns =["SummaryEng","SummaryUr","TextEng","TextUr"])
     df.to_csv(fname+".csv", index = False)
